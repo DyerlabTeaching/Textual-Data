@@ -1,21 +1,213 @@
 ---
-title: "Narrative Title"
+title: "Text Based Data"
 format: html
 ---
 
 ## Topic
 
-Insert rationale for topic here.
+This quick section will focus on the text—or, more aptly, `character`—data type.  We commonly run across this as narrative or designations such as site names, locations, other bits of information that we need to 
 
 ## Data Types
 
 ```{r}
-x <- rnorm(100)
-hist(x)
+x <- "Rodney"
+y <- 'Dyer'
 ```
 
-`This section is where you fill in all the information`
+You could use either single or double quotes to define a character type *de novo*—both work just fine.  Having two of them is really helpful when you want to use one of the quote symbols inside the data.
 
-## Questions
+```{r}
+z <- 'Bob Marley once said, "It is a foolish dog that barks at a passing bird"'
+z
+```
 
-If you have any questions for me specifically on this topic, please post as an Issue in your repository, otherwise consider posting to the discussion board on [Canvas](https://canvas.vcu.edu).
+But notice that when you print it out to the terminal (or in the output to your Quarto chunck), it uses the `backslash-double quote` format.  It also show up if you use `print`
+
+```{r}
+print(z)
+```
+
+But not when you `cat` it:
+
+```{r}
+cat(z)
+```
+
+This is called *escaping* a special character.  And it is a valid way to embed a quoting character into a sequence.
+
+```{r}
+w <- "\"Learning R is Fun,\" said Rodney."
+cat(w)
+```
+
+There are other special characters that you will run across such as:
+
+- The `Tab` character, `\t` 
+- The `New Line` character `\n`
+- The `Return` character `\r`.  This is becoming obsolete, in the "olden days" it was used with new line when we were making a transition from the manual typewriter where if you think about the action of using a typewriter, you need to advance a line AND return the carrage—the part that makes the letters on the paper—to the beginning of the line.  That is why you sometimes see CR for on the return key.  Windows used this convention and you may run across it still form peole who use that platform as `\r\n`.  Mostly it is just yet another annoyance from some Windows software.
+
+
+## The `stringr` Library
+
+Another joy from the `tidyverse` folks is the `stringr` library that has made things a bit easier in handling string data.  As usual, there is a cheatsheet linked in the assets on this topic.
+
+```{r}
+library( stringr )
+```
+
+
+## The 'Verbs" 
+
+When dealing with text, there are some basic `verbs` that we should recognize as fundamental actions that you'll apply across a wide variety of situations.  For text data, these include:
+
+- `Creating` new/composite text. 
+- `Finding` content inside a string.
+- `Deleting` content within a string 
+- `Replacing` content in a string with some new character value.
+- `Manipulating` content in a string.
+
+
+### Creating
+
+We've already seen how to create a single string, here is how we can smush (yes that is a technical term) together several kinds of data.
+
+```{r}
+paste( "This","is","fun")
+```
+
+You can also mix-and-match different data types, as long as they can be coerced into a string type (which all data types can).
+
+
+```{r}
+num <- 42
+paste("It is", TRUE, "that my favorite number is", num, ".")
+```
+
+When we work with character data, we need to realize that from the context of indexing, such as when we use a vector or `data.frame`, the sequence of characters is all one object.
+
+```{r}
+length(z)
+```
+
+Even if it is made up of several characters.  If we are interested subsequences within the string, we need to ask more specifically about the string length, not the variable length.
+
+```{r}
+str_length( z )
+```
+
+### Finding 
+
+Finding text may be done in a few ways.   We can ask if:
+
+1. A particular sequence of characters exist in the string (`TRUE/FALSE`).
+```{r}
+str_detect(z, "Marley")
+str_detect(z, "Rodney")
+```
+
+2. We can ask for the number of times a sequences shows up in a string.
+```{r}
+str_count(z, "a")
+```
+
+3. We can ask where the first occurance of a subsequence of characters starts at:
+```{r}
+str_locate( z, "dog")
+```
+
+4. We can find all occurences of a substring.
+```{r}
+str_locate_all( z, "a")
+```
+
+5. If we know the location of a substring, you can extract it.  Here I use the negative for the second index, which is treated as "second from the end" of the string.
+
+```{r}
+str_sub(z, 24, -2)
+```
+
+
+6. If we have several character objects in a vector, we can find the subset that contains a specific sequence.
+
+```{r}
+character_vec <- c(w,x,y,z)
+character_vec
+```
+
+
+```{r}
+str_detect( character_vec, "r")
+```
+
+However, it is case sensitive
+
+```{r}
+str_detect( character_vec, "R")
+```
+
+
+### Deleting
+
+
+### Replacing
+
+
+There are times when 
+
+```{r}
+cat( str_replace(z, "Bob Marley", "Rodney") )
+```
+
+
+If we do know the location (character location) and size (`str_length`) of what we are replacing, then we can use those numerical values direction.
+
+```{r}
+str_sub(z, 1, 10)
+```
+
+
+### Manipulating 
+
+
+1. Making the string all lower case.
+
+```{r}
+str_to_lower(z)
+```
+
+
+2. Making it all uppercase.
+
+```{r}
+str_to_upper(z)
+```
+
+3. Creating `Title Case` text.
+
+
+```{r}
+str_to_title(z)
+```
+
+
+4. Capitalizing it as if it were a sentence.
+
+```{r}
+str_to_sentence( "this is getting a bit old, isn't it?")
+```
+
+
+```{r}
+tmp <- str_to_sentence("rodney exclaimed, \"but it doesn't know about internal quoted sentence fragments!\" and then sat down.") 
+cat(tmp)
+```
+
+
+## Regular Expressions
+
+A regular expression, or *regex* is a concise language used for detecting and describing patterns found in language.  An entire course could be taught on the use of *regex* but here we'll only spend enough time on it so that you know some kind of magic exists in the universe and can explore it if you need to in the future.
+
+For this example, I'm going to use some text data that I have been playing with 
+
+
+
