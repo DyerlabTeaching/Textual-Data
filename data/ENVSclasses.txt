@@ -246,3 +246,17 @@ Environmental Studies), ENVS 492 or ENVS 493. Enrollment restricted to
 students who have completed 90 hours of undergraduate course work.
 Any of the corequisite courses qualify as a capstone experience if taken
 with this course. Graded as pass/fail.
+ENVZ 105. Physical Geology Laboratory. 1 Hour.
+Semester course; 2 laboratory hours. 1 credit. Pre- or corequisite:
+ENVS 105, an optional laboratory course consisting of experiments and
+activities related to ENVS 105.
+ENVZ 335. Environmental Geology Laboratory. 1 Hour.
+Semester course; 2 laboratory hours. 1 credit. Corequisite: ENVS 335.
+Required for environmental science majors enrolled in ENVS 335; optional
+for other majors. Attendance on one Saturday morning field trip required.
+Laboratory exercises coordinated with ENVS 335 lectures.
+ENVZ 401. Meteorology and Climatology Laboratory. 1 Hour.
+Semester course; 3 laboratory hours. 1 credit. Pre- or corequisite:
+ENVS 401. A series of laboratory and field experiments designed to
+quantify the elements of weather and climate and to interpret their local
+temporal and spatial variations.
